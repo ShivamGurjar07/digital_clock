@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); 
+            font-family: 'Arial', sans-serif;
+        }
+
+        .clock {
+            font-size: 80px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+        }
+
+        .background-numbers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: -1; 
+        }
+
+        .background-numbers div {
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .background-numbers div span {
+            margin: 10px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock-container">
+        <!-- Numbers in the background -->
+        <div class="background-numbers">
+            <div>
+                <span>0</span> <span>1</span> <span>2</span> <span>3</span> <span>4</span>
+                <span>5</span> <span>6</span> <span>7</span> <span>8</span> <span>9</span>
+            </div>
+        </div>
+
+        <!-- Actual Clock Time -->
+        <div class="clock" id="clock">00:00:00</div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const clock = document.getElementById('clock');
+            const now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); 
+    </script>
+
+</body>
+</html>
